@@ -1,0 +1,23 @@
+object frmMain: TfrmMain
+  Left = 1292
+  Height = 557
+  Top = 297
+  Width = 844
+  Caption = 'LazaSQL'
+  FormStyle = fsMDIForm
+  Menu = mainmenu
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '2.2.4.0'
+  object mainmenu: TMainMenu
+    Left = 148
+    Top = 219
+    object menuConnection: TMenuItem
+      Caption = 'Connection'
+      object miConnections: TMenuItem
+        Caption = 'Connections'
+        OnClick = miConnectionsClick
+      end
+    end
+  end
+end

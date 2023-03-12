@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <Version Value="12"/>
+    <BuildModes Active="Default"/>
+    <Units>
+      <Unit>
+        <Filename Value="lazasql.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UsageCount Value="23"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/form_main.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmMain"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="1"/>
+        <CursorPos Y="47"/>
+        <UsageCount Value="23"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/form_connections.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmConnections"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="89"/>
+        <CursorPos X="3" Y="96"/>
+        <UsageCount Value="23"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/form_conn_edit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmConnEdit"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="1"/>
+        <TopLine Value="14"/>
+        <CursorPos X="6" Y="101"/>
+        <UsageCount Value="23"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/prg_config.pas"/>
+        <IsVisibleTab Value="True"/>
+        <WindowIndex Value="1"/>
+        <TopLine Value="85"/>
+        <CursorPos Y="117"/>
+        <UsageCount Value="12"/>
+        <Bookmarks Count="1">
+          <Item0 X="5" Y="165" ID="1"/>
+        </Bookmarks>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/3.2.2/rtl/objpas/fgl.pp"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="1"/>
+        <CursorPos X="57" Y="38"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit>
+    </Units>
+    <General>
+      <ActiveWindowIndexAtStart Value="1"/>
+    </General>
+    <JumpHistory HistoryIndex="29">
+      <Position>
+        <Filename Value="src/form_conn_edit.pas"/>
+        <Caret Line="86" Column="31" TopLine="2"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_conn_edit.pas"/>
+        <Caret Line="87" Column="31" TopLine="2"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_conn_edit.pas"/>
+        <Caret Line="29" Column="45" TopLine="2"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_conn_edit.pas"/>
+        <Caret Line="99" Column="43" TopLine="18"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_conn_edit.pas"/>
+        <Caret Line="86" Column="5" TopLine="12"/>
+      </Position>
+      <Position>
+        <Filename Value="src/prg_config.pas"/>
+        <Caret Line="18" Column="11"/>
+      </Position>
+      <Position>
+        <Filename Value="src/prg_config.pas"/>
+        <Caret Line="11" Column="14"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_connections.pas"/>
+        <Caret Line="64" Column="22" TopLine="36"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_connections.pas"/>
+        <Caret Line="76" Column="31" TopLine="37"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_connections.pas"/>
+        <Caret Line="82" Column="31" TopLine="38"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_connections.pas"/>
+        <Caret Line="93" Column="16" TopLine="26"/>
+      </Position>
+      <Position>
+        <Filename Value="src/prg_config.pas"/>
+        <Caret Line="56" Column="23" TopLine="5"/>
+      </Position>
+      <Position>
+        <Filename Value="src/prg_config.pas"/>
+        <Caret Line="33" Column="34" TopLine="5"/>
+      </Position>
+      <Position>
+        <Filename Value="src/prg_config.pas"/>
+        <Caret Line="50" TopLine="5"/>
+      </Position>
+      <Position>
+        <Filename Value="src/prg_config.pas"/>
+        <Caret Line="112" Column="25" TopLine="32"/>
+      </Position>
+      <Position>
+        <Filename Value="src/prg_config.pas"/>
+        <Caret Line="51" Column="20" TopLine="32"/>
+      </Position>
+      <Position>
+        <Filename Value="src/prg_config.pas"/>
+        <Caret Line="127" Column="5" TopLine="52"/>
+      </Position>
+      <Position>
+        <Filename Value="src/prg_config.pas"/>
+        <Caret Line="29"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_connections.pas"/>
+        <Caret Line="85" Column="48" TopLine="26"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_main.pas"/>
+        <Caret Line="46" Column="34"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_connections.pas"/>
+        <Caret Line="123" Column="17" TopLine="89"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_connections.pas"/>
+        <Caret Line="27" Column="15"/>
+      </Position>
+      <Position>
+        <Filename Value="src/prg_config.pas"/>
+        <Caret Line="134" Column="9" TopLine="62"/>
+      </Position>
+      <Position>
+        <Filename Value="src/prg_config.pas"/>
+        <Caret Line="117" TopLine="85"/>
+      </Position>
+      <Position>
+        <Filename Value="src/prg_config.pas"/>
+        <Caret Line="118" TopLine="85"/>
+      </Position>
+      <Position>
+        <Filename Value="src/prg_config.pas"/>
+        <Caret Line="119" TopLine="85"/>
+      </Position>
+      <Position>
+        <Filename Value="src/prg_config.pas"/>
+        <Caret Line="124" TopLine="85"/>
+      </Position>
+      <Position>
+        <Filename Value="src/prg_config.pas"/>
+        <Caret Line="125" TopLine="85"/>
+      </Position>
+      <Position>
+        <Filename Value="src/prg_config.pas"/>
+        <Caret Line="127" TopLine="85"/>
+      </Position>
+      <Position>
+        <Filename Value="src/prg_config.pas"/>
+        <Caret Line="152" TopLine="85"/>
+      </Position>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+</CONFIG>

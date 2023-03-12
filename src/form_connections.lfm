@@ -1,0 +1,109 @@
+object frmConnections: TfrmConnections
+  Left = 1515
+  Height = 350
+  Top = 543
+  Width = 557
+  Caption = 'Connections'
+  ClientHeight = 350
+  ClientWidth = 557
+  OnClose = FormClose
+  OnCreate = FormCreate
+  Position = poOwnerFormCenter
+  LCLVersion = '2.2.4.0'
+  object pnlBottom: TPanel
+    Left = 0
+    Height = 45
+    Top = 305
+    Width = 557
+    Align = alBottom
+    BevelOuter = bvNone
+    ClientHeight = 45
+    ClientWidth = 557
+    TabOrder = 0
+    object btnConnect: TBitBtn
+      Left = 4
+      Height = 30
+      Top = 8
+      Width = 108
+      Caption = 'Connect'
+      Default = True
+      Kind = bkOK
+      ModalResult = 1
+      TabOrder = 0
+    end
+    object btnNew: TBitBtn
+      Left = 128
+      Height = 30
+      Top = 8
+      Width = 76
+      Caption = 'New'
+      OnClick = btnNewClick
+      TabOrder = 1
+    end
+    object btnCopy: TBitBtn
+      Left = 208
+      Height = 30
+      Top = 8
+      Width = 75
+      Caption = 'Copy'
+      OnClick = btnCopyClick
+      TabOrder = 2
+    end
+    object btnEdit: TBitBtn
+      Left = 288
+      Height = 30
+      Top = 8
+      Width = 75
+      Caption = 'Edit'
+      OnClick = btnEditClick
+      TabOrder = 3
+    end
+    object btnDelete: TBitBtn
+      Left = 368
+      Height = 30
+      Top = 8
+      Width = 75
+      Caption = 'Delete'
+      OnClick = btnDeleteClick
+      TabOrder = 4
+    end
+    object btnCancel: TBitBtn
+      Left = 464
+      Height = 30
+      Top = 8
+      Width = 87
+      Anchors = [akTop, akRight]
+      DefaultCaption = True
+      Kind = bkClose
+      ModalResult = 11
+      TabOrder = 5
+    end
+  end
+  object grid: TDrawGrid
+    Left = 0
+    Height = 305
+    Top = 0
+    Width = 557
+    Align = alClient
+    ColCount = 3
+    Columns = <    
+      item
+        Title.Caption = 'ID'
+        Width = 150
+      end    
+      item
+        Title.Caption = 'DB Type'
+      end    
+      item
+        Title.Caption = 'Address / Path'
+        Width = 300
+      end>
+    ExtendedSelect = False
+    FixedCols = 0
+    MouseWheelOption = mwGrid
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSelect, goThumbTracking, goSmoothScroll]
+    ScrollBars = ssVertical
+    TabOrder = 1
+    OnDrawCell = gridDrawCell
+  end
+end
