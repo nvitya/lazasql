@@ -10,9 +10,9 @@ uses
 type
   TConnDbType = (dbtMySql, dbtSQLite);
 
-  { TConnection }
+  { TDbConnCfg }
 
-  TConnection = class
+  TDbConnCfg = class
   public
     id       : string;
     dbtype   : TConnDbType;
@@ -32,7 +32,7 @@ type
     function GetInfoStr : string;
   end;
 
-  TConnList = specialize TFPGObjectList<TConnection>;
+  TConnList = specialize TFPGObjectList<TDbConnCfg>;
 
   { TPrgConfig }
 
@@ -65,9 +65,9 @@ begin
   else result := '?';
 end;
 
-{ TConnection }
+{ TDbConnCfg }
 
-constructor TConnection.Create(aid : string);
+constructor TDbConnCfg.Create(aid : string);
 begin
   id       := aid;
   dbtype := dbtMySql;
@@ -81,7 +81,7 @@ begin
   dbpath   := '';
 end;
 
-function TConnection.GetInfoStr : string;
+function TDbConnCfg.GetInfoStr : string;
 begin
   if dbtype = dbtSQLite then
   begin
@@ -111,7 +111,7 @@ end;
 procedure TPrgConfig.Load(afilename : string);
 var
   jnarr, jn, jv : TJsonNode;
-  item : TConnection;
+  item : TDbConnCfg;
   i : integer;
 begin
   filename := afilename;
@@ -129,7 +129,7 @@ begin
       jn := jnarr.Child(i);
       if jn.Find('ID', jv) then
       begin
-        item := TConnection.Create(jv.AsString);
+        item := TDbConnCfg.Create(jv.AsString);
         if jn.Find('DBTYPE', jv) then item.dbtype := TConnDbType(trunc(jv.AsNumber));
 
         if item.dbtype = dbtSQLite then
@@ -154,7 +154,7 @@ end;
 procedure TPrgConfig.Save;
 var
   jnarr, jn : TJsonNode;
-  item : TConnection;
+  item : TDbConnCfg;
 begin
   jnarr := jroot.Add('CONNLIST', nkArray);
   jnarr.Clear;

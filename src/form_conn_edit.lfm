@@ -33,7 +33,7 @@ object frmConnEdit: TfrmConnEdit
   end
   object cbDbType: TComboBox
     Left = 188
-    Height = 30
+    Height = 27
     Top = 24
     Width = 104
     ItemHeight = 0

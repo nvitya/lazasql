@@ -35,14 +35,16 @@ type
 
   public
 
+    sqlfrmlist : TList;
+
     connlist : TConnList;
 
-    procedure EditItem(aitem : TConnection; acopy : TConnection = nil);
+    procedure EditItem(aitem : TDbConnCfg; acopy : TDbConnCfg = nil);
 
-    function SelectedItem : TConnection;
+    function SelectedItem : TDbConnCfg;
     procedure UpdateGrid;
 
-    procedure SelectItem(aitem : TConnection);
+    procedure SelectItem(aitem : TDbConnCfg);
 
   end;
 
@@ -62,7 +64,7 @@ procedure TfrmConnections.gridDrawCell(Sender : TObject; aCol, aRow : Integer;
   aRect : TRect; aState : TGridDrawState);
 var
   s : string;
-  item : TConnection;
+  item : TDbConnCfg;
   c : TCanvas;
   ts : TTextStyle;
 begin
@@ -95,6 +97,7 @@ end;
 procedure TfrmConnections.FormCreate(Sender : TObject);
 begin
   connlist := prgconfig.connlist;
+  sqlfrmlist := TList.Create;
   UpdateGrid;
 end;
 
@@ -133,22 +136,25 @@ end;
 procedure TfrmConnections.btnConnectClick(Sender : TObject);
 var
   frm : TfrmSQL;
-  ccfg : TConnection;
+  ccfg : TDbConnCfg;
 begin
-  if (grid.Row > 0) and (grid.Row <= connlist.count) then
-  begin
-    ccfg := connlist[grid.Row - 1];
-    Application.CreateForm(TfrmSQL, frm);
-    frm.conncfg := ccfg;
-    frm.Show;
-  end
-  else
+  if (grid.Row < 1) or (grid.Row > connlist.count) then
   begin
     ModalResult := 0;
+    EXIT;
+  end;
+
+  ccfg := connlist[grid.Row - 1];
+
+  frm := NewSqlForm(ccfg);
+  if frm <> nil then
+  begin
+    frm.memoSQL.SetFocus;
+    Hide;
   end;
 end;
 
-procedure TfrmConnections.EditItem(aitem : TConnection; acopy : TConnection);
+procedure TfrmConnections.EditItem(aitem : TDbConnCfg; acopy : TDbConnCfg);
 var
   frm : TfrmConnEdit;
 begin
@@ -172,7 +178,7 @@ begin
   frm.Free;
 end;
 
-function TfrmConnections.SelectedItem : TConnection;
+function TfrmConnections.SelectedItem : TDbConnCfg;
 begin
   if (grid.Row > 0) and (grid.Row <= connlist.count)
   then
@@ -186,7 +192,7 @@ begin
   grid.RowCount := 1 + connlist.count;
 end;
 
-procedure TfrmConnections.SelectItem(aitem : TConnection);
+procedure TfrmConnections.SelectItem(aitem : TDbConnCfg);
 var
   i : integer;
 begin

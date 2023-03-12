@@ -1,14 +1,14 @@
 object frmConnections: TfrmConnections
-  Left = 1515
+  Left = 1273
   Height = 350
-  Top = 543
+  Top = 617
   Width = 557
   Caption = 'Connections'
   ClientHeight = 350
   ClientWidth = 557
   OnClose = FormClose
   OnCreate = FormCreate
-  Position = poOwnerFormCenter
+  Position = poScreenCenter
   LCLVersion = '2.2.4.0'
   object pnlBottom: TPanel
     Left = 0

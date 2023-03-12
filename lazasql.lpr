@@ -20,6 +20,7 @@ begin
   RequireDerivedFormResource := True;
   Application.Scaled := True;
   Application.Initialize;
+  Application.Title := 'LazaSQL';
 
 
   DefaultFormatSettings.DateSeparator := '-';
@@ -27,8 +28,10 @@ begin
 
   prgconfig.Load('lazasql.json');
 
-  Application.CreateForm(TfrmMain, frmMain);
+  //Application.CreateForm(TfrmMain, frmMain);
+  //frmMain.Visible := False;
   Application.CreateForm(TfrmConnections, frmConnections);
+  frmConnections.Show;
   Application.Run;
 end.
 

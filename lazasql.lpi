@@ -62,6 +62,7 @@
         <Filename Value="src/form_sql.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmSQL"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
     </Units>

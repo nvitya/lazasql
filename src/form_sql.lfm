@@ -6,14 +6,14 @@ object frmSQL: TfrmSQL
   Caption = 'SQL'
   ClientHeight = 405
   ClientWidth = 560
-  OnShow = FormShow
+  OnClose = FormClose
   PopupMenu = sqlMenu
   Position = poOwnerFormCenter
   LCLVersion = '2.2.4.0'
   object nbBottom: TNotebook
     Left = 0
-    Height = 270
-    Top = 135
+    Height = 322
+    Top = 83
     Width = 560
     PageIndex = 0
     Align = alClient
@@ -21,40 +21,43 @@ object frmSQL: TfrmSQL
     object pageGrid: TPage
       object grid: TStringGrid
         Left = 0
-        Height = 270
+        Height = 322
         Top = 0
         Width = 560
         Align = alClient
+        ColCount = 2
         FixedCols = 0
         MouseWheelOption = mwGrid
         Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goColMoving, goThumbTracking, goSmoothScroll]
+        RowCount = 2
         TabOrder = 0
       end
     end
   end
   object pnlSQL: TPanel
     Left = 0
-    Height = 130
+    Height = 78
     Top = 0
     Width = 560
     Align = alTop
     BevelOuter = bvNone
-    ClientHeight = 130
+    ClientHeight = 78
     ClientWidth = 560
     TabOrder = 1
     object memoSQL: TMemo
       Left = 0
-      Height = 130
+      Height = 78
       Top = 0
       Width = 560
       Align = alClient
       Font.Name = 'Courier New'
       Lines.Strings = (
-        'select * from'
-        'itypes'
+        'select * '
+        'from itypes'
       )
       ParentFont = False
       PopupMenu = sqlMenu
+      ScrollBars = ssAutoBoth
       TabOrder = 0
     end
   end
@@ -62,7 +65,7 @@ object frmSQL: TfrmSQL
     Cursor = crVSplit
     Left = 0
     Height = 5
-    Top = 130
+    Top = 78
     Width = 560
     Align = alTop
     ResizeAnchor = akTop
@@ -74,6 +77,14 @@ object frmSQL: TfrmSQL
       Caption = 'Run'
       ShortCut = 120
       OnClick = miRunClick
+    end
+    object Separator1: TMenuItem
+      Caption = '-'
+    end
+    object miCloneWindow: TMenuItem
+      Caption = 'Clone Window'
+      ShortCut = 116
+      OnClick = miCloneWindowClick
     end
   end
   object query: TSQLQuery

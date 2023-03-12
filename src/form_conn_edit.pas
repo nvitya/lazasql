@@ -44,9 +44,9 @@ type
 
   public
 
-    item : TConnection;
+    item : TDbConnCfg;
 
-    procedure Load(aitem : TConnection);
+    procedure Load(aitem : TDbConnCfg);
 
   end;
 
@@ -65,7 +65,7 @@ begin
 
   if item = nil then
   begin
-    item := TConnection.Create(edID.Text);
+    item := TDbConnCfg.Create(edID.Text);
     prgconfig.connlist.Add(item);
   end;
 
@@ -86,7 +86,7 @@ begin
   nbDbType.PageIndex := cbDbType.ItemIndex;
 end;
 
-procedure TfrmConnEdit.Load(aitem : TConnection);
+procedure TfrmConnEdit.Load(aitem : TDbConnCfg);
 begin
   item := aitem;
   if item = nil then Exit;
