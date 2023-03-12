@@ -26,6 +26,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="FCL"/>
+      </Item>
+      <Item>
         <PackageName Value="LCL"/>
       </Item>
     </RequiredPackages>
@@ -53,6 +56,12 @@
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmConnEdit"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/form_sql.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmSQL"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
     </Units>

@@ -17,10 +17,11 @@ type
     miConnections : TMenuItem;
     procedure miConnectionsClick(Sender : TObject);
     procedure FormCreate(Sender : TObject);
+    procedure FormShow(Sender : TObject);
   private
 
   public
-
+    firstshow : boolean;
   end;
 
 var
@@ -37,13 +38,22 @@ uses
 
 procedure TfrmMain.miConnectionsClick(Sender : TObject);
 begin
-  Application.CreateForm(TfrmConnections, frmConnections);
+  //Application.CreateForm(TfrmConnections, frmConnections);
   frmConnections.ShowModal;
 end;
 
 procedure TfrmMain.FormCreate(Sender : TObject);
 begin
-  prgconfig.Load('lazasql.json');
+  firstshow := true;
+end;
+
+procedure TfrmMain.FormShow(Sender : TObject);
+begin
+  if firstshow then
+  begin
+    //miConnectionsClick(nil);
+    firstshow := false;
+  end;
 end;
 
 end.

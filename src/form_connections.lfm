@@ -29,6 +29,7 @@ object frmConnections: TfrmConnections
       Default = True
       Kind = bkOK
       ModalResult = 1
+      OnClick = btnConnectClick
       TabOrder = 0
     end
     object btnNew: TBitBtn
@@ -104,6 +105,7 @@ object frmConnections: TfrmConnections
     Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSelect, goThumbTracking, goSmoothScroll]
     ScrollBars = ssVertical
     TabOrder = 1
+    OnDblClick = gridDblClick
     OnDrawCell = gridDrawCell
   end
 end

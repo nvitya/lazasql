@@ -1,0 +1,104 @@
+object frmSQL: TfrmSQL
+  Left = 1576
+  Height = 405
+  Top = 157
+  Width = 560
+  Caption = 'SQL'
+  ClientHeight = 405
+  ClientWidth = 560
+  OnShow = FormShow
+  PopupMenu = sqlMenu
+  Position = poOwnerFormCenter
+  LCLVersion = '2.2.4.0'
+  object nbBottom: TNotebook
+    Left = 0
+    Height = 270
+    Top = 135
+    Width = 560
+    PageIndex = 0
+    Align = alClient
+    TabOrder = 0
+    object pageGrid: TPage
+      object grid: TStringGrid
+        Left = 0
+        Height = 270
+        Top = 0
+        Width = 560
+        Align = alClient
+        FixedCols = 0
+        MouseWheelOption = mwGrid
+        Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goColMoving, goThumbTracking, goSmoothScroll]
+        TabOrder = 0
+      end
+    end
+  end
+  object pnlSQL: TPanel
+    Left = 0
+    Height = 130
+    Top = 0
+    Width = 560
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 130
+    ClientWidth = 560
+    TabOrder = 1
+    object memoSQL: TMemo
+      Left = 0
+      Height = 130
+      Top = 0
+      Width = 560
+      Align = alClient
+      Font.Name = 'Courier New'
+      Lines.Strings = (
+        'select * from'
+        'itypes'
+      )
+      ParentFont = False
+      PopupMenu = sqlMenu
+      TabOrder = 0
+    end
+  end
+  object Splitter1: TSplitter
+    Cursor = crVSplit
+    Left = 0
+    Height = 5
+    Top = 130
+    Width = 560
+    Align = alTop
+    ResizeAnchor = akTop
+  end
+  object sqlMenu: TPopupMenu
+    Left = 316
+    Top = 56
+    object miRun: TMenuItem
+      Caption = 'Run'
+      ShortCut = 120
+      OnClick = miRunClick
+    end
+  end
+  object query: TSQLQuery
+    FieldDefs = <>
+    Database = dbconn
+    Transaction = sqltra
+    Params = <>
+    Macros = <>
+    Left = 248
+    Top = 31
+  end
+  object sqltra: TSQLTransaction
+    Active = False
+    Database = dbconn
+    Options = [stoUseImplicit]
+    Left = 402
+    Top = 55
+  end
+  object dbconn: TMySQL80Connection
+    Connected = False
+    LoginPrompt = False
+    KeepConnection = False
+    Transaction = sqltra
+    SkipLibraryVersionCheck = False
+    Left = 92
+    Top = 55
+  end
+end

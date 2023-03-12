@@ -29,6 +29,8 @@ type
     procedure btnEditClick(Sender : TObject);
     procedure btnDeleteClick(Sender : TObject);
     procedure FormClose(Sender : TObject; var CloseAction : TCloseAction);
+    procedure gridDblClick(Sender : TObject);
+    procedure btnConnectClick(Sender : TObject);
   private
 
   public
@@ -50,7 +52,7 @@ var
 implementation
 
 uses
-  form_conn_edit;
+  form_conn_edit, form_sql;
 
 {$R *.lfm}
 
@@ -121,6 +123,29 @@ end;
 procedure TfrmConnections.FormClose(Sender : TObject; var CloseAction : TCloseAction);
 begin
   prgconfig.Save;
+end;
+
+procedure TfrmConnections.gridDblClick(Sender : TObject);
+begin
+  btnConnect.Click;
+end;
+
+procedure TfrmConnections.btnConnectClick(Sender : TObject);
+var
+  frm : TfrmSQL;
+  ccfg : TConnection;
+begin
+  if (grid.Row > 0) and (grid.Row <= connlist.count) then
+  begin
+    ccfg := connlist[grid.Row - 1];
+    Application.CreateForm(TfrmSQL, frm);
+    frm.conncfg := ccfg;
+    frm.Show;
+  end
+  else
+  begin
+    ModalResult := 0;
+  end;
 end;
 
 procedure TfrmConnections.EditItem(aitem : TConnection; acopy : TConnection);
