@@ -1,0 +1,143 @@
+object frmMysqlStruct: TfrmMysqlStruct
+  Left = 1354
+  Height = 474
+  Top = 674
+  Width = 782
+  Caption = 'Database Structure'
+  ClientHeight = 474
+  ClientWidth = 782
+  OnClose = FormClose
+  OnShow = FormShow
+  Position = poScreenCenter
+  LCLVersion = '2.2.4.0'
+  object tgrid: TStringGrid
+    Left = 0
+    Height = 474
+    Top = 0
+    Width = 260
+    Align = alLeft
+    ColCount = 4
+    Columns = <    
+      item
+        Title.Caption = 'Table'
+        Width = 100
+      end    
+      item
+        Alignment = taRightJustify
+        Title.Alignment = taLeftJustify
+        Title.Caption = 'Rows'
+      end    
+      item
+        Alignment = taRightJustify
+        Title.Alignment = taLeftJustify
+        Title.Caption = 'Data Len.'
+      end    
+      item
+        Title.Caption = 'Engine'
+      end>
+    FixedCols = 0
+    MouseWheelOption = mwGrid
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goColMoving, goRowSelect, goThumbTracking, goSmoothScroll]
+    PopupMenu = tpopupmenu
+    TabOrder = 0
+    OnDblClick = tgridDblClick
+    OnSelection = tgridSelection
+  end
+  object Splitter1: TSplitter
+    Left = 260
+    Height = 474
+    Top = 0
+    Width = 5
+  end
+  object pnlRight: TPanel
+    Left = 265
+    Height = 474
+    Top = 0
+    Width = 517
+    Align = alClient
+    BevelOuter = bvNone
+    ClientHeight = 474
+    ClientWidth = 517
+    TabOrder = 2
+    object pnlTableName: TPanel
+      Left = 0
+      Height = 32
+      Top = 0
+      Width = 517
+      Align = alTop
+      Caption = 'Table Name'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+    end
+    object fgrid: TStringGrid
+      Left = 0
+      Height = 442
+      Top = 32
+      Width = 517
+      Align = alClient
+      ColCount = 6
+      Columns = <      
+        item
+          Title.Caption = 'Field'
+          Width = 120
+        end      
+        item
+          Title.Caption = 'Type'
+          Width = 90
+        end      
+        item
+          Title.Caption = 'Null'
+          Width = 40
+        end      
+        item
+          Title.Caption = 'Key'
+          Width = 50
+        end      
+        item
+          Title.Caption = 'Default'
+        end      
+        item
+          Title.Caption = 'Extra'
+          Width = 120
+        end>
+      FixedCols = 0
+      MouseWheelOption = mwGrid
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goColMoving, goThumbTracking, goSmoothScroll]
+      TabOrder = 1
+    end
+  end
+  object dbconn: TMySQL80Connection
+    Connected = False
+    LoginPrompt = False
+    KeepConnection = False
+    Transaction = sqltra
+    SkipLibraryVersionCheck = False
+    Left = 336
+    Top = 296
+  end
+  object sqltra: TSQLTransaction
+    Active = False
+    Database = dbconn
+    Options = [stoUseImplicit]
+    Left = 646
+    Top = 296
+  end
+  object query: TSQLQuery
+    FieldDefs = <>
+    Database = dbconn
+    Transaction = sqltra
+    Params = <>
+    Macros = <>
+    Left = 492
+    Top = 272
+  end
+  object tpopupmenu: TPopupMenu
+    Left = 112
+    Top = 188
+    object miShowCreateTable: TMenuItem
+      Caption = 'Show Create Table'
+      OnClick = miShowCreateTableClick
+    end
+  end
+end

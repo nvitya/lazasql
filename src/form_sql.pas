@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Grids,
-  StdCtrls, Menus, prg_config, mysql50conn, mysql80conn, DB, SQLDB;
+  StdCtrls, Menus, prg_config, mysql50conn, mysql80conn, DB, SQLDB,
+  strparseobj;
 
 type
 
@@ -17,7 +18,7 @@ type
     pageGrid : TPage;
     grid : TStringGrid;
     pnlSQL : TPanel;
-    memoSQL : TMemo;
+    msql : TMemo;
     Splitter1 : TSplitter;
     sqlMenu : TPopupMenu;
     miRun : TMenuItem;
@@ -26,9 +27,18 @@ type
     dbconn : TMySQL80Connection;
     miCloneWindow : TMenuItem;
     Separator1 : TMenuItem;
+    pageLog : TPage;
+    mlog : TMemo;
+    miShowLog : TMenuItem;
+    miViewField : TMenuItem;
+    Separator2 : TMenuItem;
+    miDbStruct : TMenuItem;
     procedure miRunClick(Sender : TObject);
     procedure miCloneWindowClick(Sender : TObject);
     procedure FormClose(Sender : TObject; var CloseAction : TCloseAction);
+    procedure miShowLogClick(Sender : TObject);
+    procedure miViewFieldClick(Sender : TObject);
+    procedure miDbStructClick(Sender : TObject);
   private
 
   public
@@ -37,11 +47,21 @@ type
     colcount    : integer;
     maxcolchars : array of integer;
 
+    sp : TStrParseObj;
+
+    sqls : array of string;
+
     procedure SetGridColumns;
     procedure FillGridData;
 
     procedure ConnectTo(acfg : TDbConnCfg);
 
+    procedure ShowGrid(ashow : boolean);
+
+    procedure ParseSqls;
+    procedure ClearSqls;
+
+    procedure RunSQLs;
   end;
 
 var
@@ -52,7 +72,7 @@ function NewSqlForm(aconncfg : TDbConnCfg) : TfrmSQL;
 implementation
 
 uses
-  form_connections;
+  form_connections, form_view_memo, form_mysql_struct;
 
 function NewSqlForm(aconncfg : TDbConnCfg) : TfrmSQL;
 var
@@ -71,7 +91,7 @@ begin
     end;
   end;
   frm.Show;
-  frmConnections.sqlfrmlist.Add(frm);
+  frmConnections.AddConnWindow(frm);
   result := frm;
 end;
 
@@ -138,7 +158,7 @@ begin
   // adjust maximal column width
   for dcol := 0 to colcount - 1 do
   begin
-    cw := maxcolchars[dcol] * 9;
+    cw := round(maxcolchars[dcol] * 9);
     if cw > 200 then cw := 200;
     if cw <  30 then cw := 30;
 
@@ -162,20 +182,146 @@ begin
   Caption := conncfg.GetInfoStr;
 end;
 
+procedure TfrmSQL.ShowGrid(ashow : boolean);
+begin
+  if not ashow then nbBottom.PageIndex := 1
+               else nbBottom.PageIndex := 0;
+end;
+
+procedure TfrmSQL.ParseSqls;
+var
+  instring : boolean;
+  mtext : string;
+  c : char;
+  s : string;
+begin
+  ClearSqls;
+
+  mtext := msql.Lines.Text;  // copy the string first
+
+  sp.Init( mtext );
+
+  instring  := false;
+  s := '';
+  while sp.readptr < sp.bufend do
+  begin
+    c := sp.readptr^;
+
+    if not instring then
+    begin
+      if (c = '-') and (RightStr(s, 1) = '-') then  // comment
+      begin
+        delete(s, length(s), 1);
+        sp.ReadLine();
+        continue;
+      end
+      else if (c = ';') and not instring then
+      begin
+        insert(s, sqls, length(sqls) + 1);
+        s := '';
+
+        Inc(sp.ReadPtr);
+        sp.SkipSpaces;
+        continue;
+      end;
+    end;
+
+    if c = '''' then
+    begin
+      if instring and (RightStr(s, 1) <> '\') then instring := false
+      else if not instring then instring := true;
+    end;
+
+    if c <> #0 then s := s + c;
+
+    Inc(sp.ReadPtr);
+  end;
+
+  if s <> '' then
+  begin
+    insert(s, sqls, length(sqls) + 1);
+  end;
+end;
+
+procedure TfrmSQL.ClearSqls;
+begin
+  sqls := [];
+end;
+
+procedure TfrmSQL.RunSQLs;
+var
+  n : integer;
+  sqltext : string;
+  t1,t2 : TDateTime;
+
+  function GetRunTime(tstart, tend : TDateTime) : string;
+  begin
+    result := '('+FormatFloat('#####0.000',(tend-tstart)*24*60*60)+' s)';
+  end;
+
+begin
+  ParseSqls;
+
+  mlog.Append('');
+  mlog.Append('-- RUNNING SQLs');
+
+  for n:= 0 to length(sqls)-1 do
+  begin
+    mlog.Append('-- SQL '+IntToStr(n+1)+':');
+    sqltext := sqls[n];
+    mlog.Append(sqltext);
+
+    query.Close;
+    query.SQL.Text := sqltext;
+
+    sp.Init(sqltext);
+    sp.ReadIdentifier();
+
+    try
+      if sp.UCComparePrev('SELECT') or sp.UCComparePrev('SHOW') or sp.UCComparePrev('DESCRIBE') then
+      begin
+        // query with results
+        t1 := now;
+        query.Open;
+        SetGridColumns;
+        query.Last;  // to fetch all the record and get the row count
+        grid.RowCount := query.RecordCount + 1;
+        FillGridData;
+        t2 := now;
+        mlog.Append('-- '+GetRunTime(t1,t2)+' returned rows: '+IntToStr(query.RecordCount));
+        query.Close;
+
+        //SetTitle(IntToStr(sq.RecordCount)+' rows');
+        ShowGrid(true);
+      end
+      else
+      begin
+        // query without results
+        t1 := now;
+        query.ExecSql;
+        t2 := now;
+        mlog.Append('-- '+GetRunTime(t1,t2)+' rows affected: '+IntToStr(query.RowsAffected));
+        //SetTitle('');
+        ShowGrid(false);
+      end;
+
+    except
+      on e : Exception do
+      begin
+        mlog.Append('-- error: '+e.Message);
+        //SetTitle('');
+        ShowGrid(false);
+      end;
+    end;
+
+    mlog.Append('');
+
+  end; // for
+end;
+
 procedure TfrmSQL.miRunClick(Sender : TObject);
 begin
-  query.Close;
-  query.SQL.Text := memoSQL.Text;
-  query.Open;
-
-  SetGridColumns;
-  query.Last;  // to fetch all the record and get the row count
-
-  grid.RowCount := query.RecordCount + 1;
-
-  FillGridData;
-
-  query.Close;
+  RunSQLs;
 end;
 
 procedure TfrmSQL.miCloneWindowClick(Sender : TObject);
@@ -185,29 +331,43 @@ begin
   frm := NewSqlForm(self.conncfg);
   if frm <> nil then
   begin
-    frm.memoSQL.Text := self.memoSQL.Text;
+    frm.msql.Text := self.msql.Text;
     frm.Show;
-    frm.memoSQL.SetFocus;
+    frm.msql.SetFocus;
     frm.Top := self.Top + 20;
     frm.Left := self.Left + 20;
   end;
 end;
 
 procedure TfrmSQL.FormClose(Sender : TObject; var CloseAction : TCloseAction);
-var
-  i : integer;
 begin
   CloseAction := caFree;
+  frmConnections.DeleteConnWindow(self);
+end;
 
-  i := frmConnections.sqlfrmlist.IndexOf(self);
-  if i >= 0 then
+procedure TfrmSQL.miShowLogClick(Sender : TObject);
+begin
+  ShowGrid(nbBottom.PageIndex <> 0);
+  if not msql.Focused then
   begin
-    frmConnections.sqlfrmlist.Delete(i);
-    if frmConnections.sqlfrmlist.Count <= 0 then
-    begin
-      Application.Terminate;
-    end;
+    if grid.Visible then grid.SetFocus;
+    if mlog.Visible then mlog.SetFocus;
   end;
+end;
+
+procedure TfrmSQL.miViewFieldClick(Sender : TObject);
+var
+  frm : TfrmViewMemo;
+begin
+  if nbBottom.PageIndex = 0 then
+  begin
+    NewMemoForm('Field: '+grid.Columns[grid.Col].Title.Caption, grid.Cells[grid.Col, grid.row]);
+  end;
+end;
+
+procedure TfrmSQL.miDbStructClick(Sender : TObject);
+begin
+  NewMysqlStructForm(self.conncfg);
 end;
 
 end.

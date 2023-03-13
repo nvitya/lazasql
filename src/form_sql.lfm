@@ -1,7 +1,7 @@
 object frmSQL: TfrmSQL
   Left = 1576
   Height = 405
-  Top = 157
+  Top = 449
   Width = 560
   Caption = 'SQL'
   ClientHeight = 405
@@ -25,11 +25,24 @@ object frmSQL: TfrmSQL
         Top = 0
         Width = 560
         Align = alClient
-        ColCount = 2
+        ColCount = 1
         FixedCols = 0
         MouseWheelOption = mwGrid
         Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goColMoving, goThumbTracking, goSmoothScroll]
-        RowCount = 2
+        PopupMenu = sqlMenu
+        RowCount = 1
+        TabOrder = 0
+      end
+    end
+    object pageLog: TPage
+      object mlog: TMemo
+        Left = 0
+        Height = 322
+        Top = 0
+        Width = 560
+        Align = alClient
+        Font.Name = 'Courier New'
+        ParentFont = False
         TabOrder = 0
       end
     end
@@ -44,7 +57,7 @@ object frmSQL: TfrmSQL
     ClientHeight = 78
     ClientWidth = 560
     TabOrder = 1
-    object memoSQL: TMemo
+    object msql: TMemo
       Left = 0
       Height = 78
       Top = 0
@@ -71,8 +84,8 @@ object frmSQL: TfrmSQL
     ResizeAnchor = akTop
   end
   object sqlMenu: TPopupMenu
-    Left = 316
-    Top = 56
+    Left = 320
+    Top = 16
     object miRun: TMenuItem
       Caption = 'Run'
       ShortCut = 120
@@ -81,10 +94,28 @@ object frmSQL: TfrmSQL
     object Separator1: TMenuItem
       Caption = '-'
     end
+    object miShowLog: TMenuItem
+      Caption = 'Show log / grid'
+      ShortCut = 113
+      OnClick = miShowLogClick
+    end
     object miCloneWindow: TMenuItem
       Caption = 'Clone Window'
       ShortCut = 116
       OnClick = miCloneWindowClick
+    end
+    object miViewField: TMenuItem
+      Caption = 'View Field'
+      ShortCut = 115
+      OnClick = miViewFieldClick
+    end
+    object Separator2: TMenuItem
+      Caption = '-'
+    end
+    object miDbStruct: TMenuItem
+      Caption = 'DB Structure'
+      ShortCut = 16450
+      OnClick = miDbStructClick
     end
   end
   object query: TSQLQuery

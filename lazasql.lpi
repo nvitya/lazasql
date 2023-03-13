@@ -65,6 +65,18 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
+      <Unit>
+        <Filename Value="src/form_view_memo.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmViewMemo"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/form_mysql_struct.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmMysqlStruct"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

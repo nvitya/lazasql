@@ -46,6 +46,9 @@ type
 
     procedure SelectItem(aitem : TDbConnCfg);
 
+    procedure AddConnWindow(afrm : TForm);
+    procedure DeleteConnWindow(afrm : TForm);
+
   end;
 
 var
@@ -149,7 +152,7 @@ begin
   frm := NewSqlForm(ccfg);
   if frm <> nil then
   begin
-    frm.memoSQL.SetFocus;
+    frm.msql.SetFocus;
     Hide;
   end;
 end;
@@ -202,6 +205,26 @@ begin
     begin
       grid.Row := i;
       exit;
+    end;
+  end;
+end;
+
+procedure TfrmConnections.AddConnWindow(afrm : TForm);
+begin
+  sqlfrmlist.Add(afrm);
+end;
+
+procedure TfrmConnections.DeleteConnWindow(afrm : TForm);
+var
+  i : integer;
+begin
+  i := sqlfrmlist.IndexOf(afrm);
+  if i >= 0 then
+  begin
+    sqlfrmlist.Delete(i);
+    if sqlfrmlist.Count <= 0 then
+    begin
+      Application.Terminate;
     end;
   end;
 end;

@@ -1,0 +1,28 @@
+object frmViewMemo: TfrmViewMemo
+  Left = 1652
+  Height = 330
+  Top = 0
+  Width = 472
+  Caption = 'View Field Contents'
+  ClientHeight = 330
+  ClientWidth = 472
+  OnClose = FormClose
+  Position = poOwnerFormCenter
+  LCLVersion = '2.2.4.0'
+  object memo: TMemo
+    Left = 0
+    Height = 330
+    Top = 0
+    Width = 472
+    Align = alClient
+    Font.Name = 'Courier New'
+    Lines.Strings = (
+      'memo'
+    )
+    OnKeyDown = memoKeyDown
+    ParentFont = False
+    ReadOnly = True
+    ScrollBars = ssVertical
+    TabOrder = 0
+  end
+end
