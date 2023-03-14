@@ -8,6 +8,7 @@ object frmViewMemo: TfrmViewMemo
   ClientWidth = 472
   OnClose = FormClose
   Position = poOwnerFormCenter
+  ShowInTaskBar = stAlways
   LCLVersion = '2.2.4.0'
   object memo: TMemo
     Left = 0

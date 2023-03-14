@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Grids,
-  StdCtrls, Menus, prg_config, mysql50conn, mysql80conn, DB, SQLDB,
+  StdCtrls, Menus, prg_config, mysql50conn, mysql80conn, mysql57conn, DB, SQLDB,
   strparseobj;
 
 type
@@ -14,6 +14,8 @@ type
   { TfrmSQL }
 
   TfrmSQL = class(TForm)
+    dbconn : TMySQL50Connection;
+    miConnections : TMenuItem;
     nbBottom : TNotebook;
     pageGrid : TPage;
     grid : TStringGrid;
@@ -24,7 +26,6 @@ type
     miRun : TMenuItem;
     query : TSQLQuery;
     sqltra : TSQLTransaction;
-    dbconn : TMySQL80Connection;
     miCloneWindow : TMenuItem;
     Separator1 : TMenuItem;
     pageLog : TPage;
@@ -33,6 +34,7 @@ type
     miViewField : TMenuItem;
     Separator2 : TMenuItem;
     miDbStruct : TMenuItem;
+    procedure miConnectionsClick(Sender : TObject);
     procedure miRunClick(Sender : TObject);
     procedure miCloneWindowClick(Sender : TObject);
     procedure FormClose(Sender : TObject; var CloseAction : TCloseAction);
@@ -62,6 +64,7 @@ type
     procedure ClearSqls;
 
     procedure RunSQLs;
+    procedure SetTitle(atitle : string);
   end;
 
 var
@@ -84,7 +87,10 @@ begin
   except
     on e : Exception do
     begin
-      MessageDlg('Connect Error', 'Error Connecting to database "'+aconncfg.GetInfoStr+'"', mtError, [mbAbort], 0);
+      MessageDlg('Connect Error',
+         'Error Connecting to database "'+aconncfg.GetInfoStr+'":'#13+e.Message,
+         mtError, [mbAbort], 0);
+
       frm.Free;
       result := nil;
       EXIT;
@@ -121,6 +127,15 @@ begin
       gc.Alignment := taRightJustify;
     end;
   end;
+end;
+
+procedure TfrmSQL.SetTitle(atitle : string);
+var
+  s : string;
+begin
+  s := conncfg.id+' SQL';
+  if atitle <> '' then s += ': '+atitle;
+  Caption := s;
 end;
 
 procedure TfrmSQL.FillGridData;
@@ -179,7 +194,7 @@ begin
 
   dbconn.Connected := True;  // may raise and exception
 
-  Caption := conncfg.GetInfoStr;
+  SetTitle('');
 end;
 
 procedure TfrmSQL.ShowGrid(ashow : boolean);
@@ -289,9 +304,9 @@ begin
         FillGridData;
         t2 := now;
         mlog.Append('-- '+GetRunTime(t1,t2)+' returned rows: '+IntToStr(query.RecordCount));
+        SetTitle(IntToStr(query.RecordCount)+' rows');
         query.Close;
 
-        //SetTitle(IntToStr(sq.RecordCount)+' rows');
         ShowGrid(true);
       end
       else
@@ -301,7 +316,7 @@ begin
         query.ExecSql;
         t2 := now;
         mlog.Append('-- '+GetRunTime(t1,t2)+' rows affected: '+IntToStr(query.RowsAffected));
-        //SetTitle('');
+        SetTitle('');
         ShowGrid(false);
       end;
 
@@ -309,7 +324,7 @@ begin
       on e : Exception do
       begin
         mlog.Append('-- error: '+e.Message);
-        //SetTitle('');
+        SetTitle('');
         ShowGrid(false);
       end;
     end;
@@ -339,6 +354,11 @@ begin
   end;
 end;
 
+procedure TfrmSQL.miConnectionsClick(Sender : TObject);
+begin
+  frmConnections.Show;
+end;
+
 procedure TfrmSQL.FormClose(Sender : TObject; var CloseAction : TCloseAction);
 begin
   CloseAction := caFree;
@@ -356,8 +376,6 @@ begin
 end;
 
 procedure TfrmSQL.miViewFieldClick(Sender : TObject);
-var
-  frm : TfrmViewMemo;
 begin
   if nbBottom.PageIndex = 0 then
   begin

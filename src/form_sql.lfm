@@ -9,6 +9,7 @@ object frmSQL: TfrmSQL
   OnClose = FormClose
   PopupMenu = sqlMenu
   Position = poOwnerFormCenter
+  ShowInTaskBar = stAlways
   LCLVersion = '2.2.4.0'
   object nbBottom: TNotebook
     Left = 0
@@ -25,7 +26,9 @@ object frmSQL: TfrmSQL
         Top = 0
         Width = 560
         Align = alClient
+        AutoEdit = False
         ColCount = 1
+        DefaultRowHeight = 20
         FixedCols = 0
         MouseWheelOption = mwGrid
         Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goColMoving, goThumbTracking, goSmoothScroll]
@@ -65,8 +68,7 @@ object frmSQL: TfrmSQL
       Align = alClient
       Font.Name = 'Courier New'
       Lines.Strings = (
-        'select * '
-        'from itypes'
+        'select * from '
       )
       ParentFont = False
       PopupMenu = sqlMenu
@@ -117,6 +119,11 @@ object frmSQL: TfrmSQL
       ShortCut = 16450
       OnClick = miDbStructClick
     end
+    object miConnections: TMenuItem
+      Caption = 'Database Connections'
+      ShortCut = 122
+      OnClick = miConnectionsClick
+    end
   end
   object query: TSQLQuery
     FieldDefs = <>
@@ -134,13 +141,13 @@ object frmSQL: TfrmSQL
     Left = 402
     Top = 55
   end
-  object dbconn: TMySQL80Connection
+  object dbconn: TMySQL50Connection
     Connected = False
     LoginPrompt = False
     KeepConnection = False
     Transaction = sqltra
     SkipLibraryVersionCheck = False
-    Left = 92
-    Top = 55
+    Left = 147
+    Top = 19
   end
 end

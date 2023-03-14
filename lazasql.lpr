@@ -20,7 +20,6 @@ begin
   RequireDerivedFormResource := True;
   Application.Scaled := True;
   Application.Initialize;
-  Application.Title := 'LazaSQL';
 
 
   DefaultFormatSettings.DateSeparator := '-';

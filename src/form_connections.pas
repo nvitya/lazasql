@@ -21,6 +21,7 @@ type
     btnEdit : TBitBtn;
     btnDelete : TBitBtn;
     btnCancel : TBitBtn;
+    procedure btnCancelClick(Sender : TObject);
     procedure gridDrawCell(Sender : TObject; aCol, aRow : Integer;
       aRect : TRect; aState : TGridDrawState);
     procedure btnNewClick(Sender : TObject);
@@ -57,7 +58,7 @@ var
 implementation
 
 uses
-  form_conn_edit, form_sql;
+  form_conn_edit, form_sql, form_mysql_struct;
 
 {$R *.lfm}
 
@@ -129,6 +130,7 @@ end;
 procedure TfrmConnections.FormClose(Sender : TObject; var CloseAction : TCloseAction);
 begin
   prgconfig.Save;
+  CloseAction := caHide;
 end;
 
 procedure TfrmConnections.gridDblClick(Sender : TObject);
@@ -138,7 +140,7 @@ end;
 
 procedure TfrmConnections.btnConnectClick(Sender : TObject);
 var
-  frm : TfrmSQL;
+  frm : TForm;
   ccfg : TDbConnCfg;
 begin
   if (grid.Row < 1) or (grid.Row > connlist.count) then
@@ -149,12 +151,20 @@ begin
 
   ccfg := connlist[grid.Row - 1];
 
+{$if 0}
   frm := NewSqlForm(ccfg);
   if frm <> nil then
   begin
     frm.msql.SetFocus;
     Hide;
   end;
+{$else}
+  frm := NewMysqlStructForm(ccfg);
+  if frm <> nil then
+  begin
+    Hide;
+  end;
+{$endif}
 end;
 
 procedure TfrmConnections.EditItem(aitem : TDbConnCfg; acopy : TDbConnCfg);
@@ -212,6 +222,10 @@ end;
 procedure TfrmConnections.AddConnWindow(afrm : TForm);
 begin
   sqlfrmlist.Add(afrm);
+end;
+
+procedure TfrmConnections.btnCancelClick(Sender : TObject);
+begin
 end;
 
 procedure TfrmConnections.DeleteConnWindow(afrm : TForm);

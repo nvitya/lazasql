@@ -1,20 +1,21 @@
 object frmMysqlStruct: TfrmMysqlStruct
-  Left = 1354
+  Left = 1303
   Height = 474
-  Top = 674
-  Width = 782
+  Top = 639
+  Width = 834
   Caption = 'Database Structure'
   ClientHeight = 474
-  ClientWidth = 782
+  ClientWidth = 834
   OnClose = FormClose
   OnShow = FormShow
   Position = poScreenCenter
+  ShowInTaskBar = stAlways
   LCLVersion = '2.2.4.0'
   object tgrid: TStringGrid
     Left = 0
     Height = 474
     Top = 0
-    Width = 260
+    Width = 314
     Align = alLeft
     ColCount = 4
     Columns = <    
@@ -24,12 +25,10 @@ object frmMysqlStruct: TfrmMysqlStruct
       end    
       item
         Alignment = taRightJustify
-        Title.Alignment = taLeftJustify
         Title.Caption = 'Rows'
       end    
       item
         Alignment = taRightJustify
-        Title.Alignment = taLeftJustify
         Title.Caption = 'Data Len.'
       end    
       item
@@ -44,26 +43,26 @@ object frmMysqlStruct: TfrmMysqlStruct
     OnSelection = tgridSelection
   end
   object Splitter1: TSplitter
-    Left = 260
+    Left = 314
     Height = 474
     Top = 0
-    Width = 5
+    Width = 6
   end
   object pnlRight: TPanel
-    Left = 265
+    Left = 320
     Height = 474
     Top = 0
-    Width = 517
+    Width = 514
     Align = alClient
     BevelOuter = bvNone
     ClientHeight = 474
-    ClientWidth = 517
+    ClientWidth = 514
     TabOrder = 2
     object pnlTableName: TPanel
       Left = 0
       Height = 32
       Top = 0
-      Width = 517
+      Width = 514
       Align = alTop
       Caption = 'Table Name'
       Font.Style = [fsBold]
@@ -74,7 +73,7 @@ object frmMysqlStruct: TfrmMysqlStruct
       Left = 0
       Height = 442
       Top = 32
-      Width = 517
+      Width = 514
       Align = alClient
       ColCount = 6
       Columns = <      
@@ -107,15 +106,6 @@ object frmMysqlStruct: TfrmMysqlStruct
       TabOrder = 1
     end
   end
-  object dbconn: TMySQL80Connection
-    Connected = False
-    LoginPrompt = False
-    KeepConnection = False
-    Transaction = sqltra
-    SkipLibraryVersionCheck = False
-    Left = 336
-    Top = 296
-  end
   object sqltra: TSQLTransaction
     Active = False
     Database = dbconn
@@ -139,5 +129,14 @@ object frmMysqlStruct: TfrmMysqlStruct
       Caption = 'Show Create Table'
       OnClick = miShowCreateTableClick
     end
+  end
+  object dbconn: TMySQL50Connection
+    Connected = False
+    LoginPrompt = False
+    KeepConnection = False
+    Transaction = sqltra
+    SkipLibraryVersionCheck = False
+    Left = 352
+    Top = 272
   end
 end

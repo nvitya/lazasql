@@ -77,6 +77,7 @@ object frmConnections: TfrmConnections
       DefaultCaption = True
       Kind = bkClose
       ModalResult = 11
+      OnClick = btnCancelClick
       TabOrder = 5
     end
   end
