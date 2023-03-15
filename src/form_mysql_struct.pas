@@ -147,6 +147,8 @@ begin
     +#13+'  information_schema.tables'
     +#13+'where'
     +#13+'  table_schema = DATABASE()'
+    +#13+'order by'
+    +#13+'  table_name'
   ;
   query.SQL.Text := s;
   query.Open;
