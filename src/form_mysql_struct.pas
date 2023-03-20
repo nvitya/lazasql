@@ -6,14 +6,13 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Grids, ExtCtrls, Menus,
-  prg_config, mysql80conn, mysql50conn, SQLDB;
+  prg_config, SQLDB;
 
 type
 
   { TfrmMysqlStruct }
 
   TfrmMysqlStruct = class(TForm)
-    dbconn : TMySQL50Connection;
     tgrid : TStringGrid;
     Splitter1 : TSplitter;
     pnlRight : TPanel;
@@ -32,6 +31,7 @@ type
 
   public
     conncfg : TDbConnCfg;
+    dbconn : TSQLConnection;
 
     procedure ConnectTo(acfg : TDbConnCfg);
 
@@ -126,10 +126,9 @@ procedure TfrmMysqlStruct.ConnectTo(acfg : TDbConnCfg);
 begin
   conncfg := acfg;
 
-  dbconn.HostName := conncfg.dbhost;
-  dbconn.DatabaseName := conncfg.dbname;
-  dbconn.UserName := conncfg.dbuser;
-  dbconn.Password := conncfg.dbpass;
+  dbconn := frmConnections.CreateSqlConn(self, conncfg);
+  query.DataBase := dbconn;
+  sqltra.DataBase := dbconn;
 
   dbconn.Connected := True;  // may raise and exception
 

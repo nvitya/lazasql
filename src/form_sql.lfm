@@ -127,7 +127,6 @@ object frmSQL: TfrmSQL
   end
   object query: TSQLQuery
     FieldDefs = <>
-    Database = dbconn
     Transaction = sqltra
     Params = <>
     Macros = <>
@@ -136,18 +135,8 @@ object frmSQL: TfrmSQL
   end
   object sqltra: TSQLTransaction
     Active = False
-    Database = dbconn
     Options = [stoUseImplicit]
     Left = 402
     Top = 55
-  end
-  object dbconn: TMySQL50Connection
-    Connected = False
-    LoginPrompt = False
-    KeepConnection = False
-    Transaction = sqltra
-    SkipLibraryVersionCheck = False
-    Left = 147
-    Top = 19
   end
 end

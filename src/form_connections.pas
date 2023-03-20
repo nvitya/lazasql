@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Grids,
-  Buttons, Types, prg_config;
+  Buttons, Types, DB, SQLDB, prg_config;
 
 type
 
@@ -50,6 +50,8 @@ type
     procedure AddConnWindow(afrm : TForm);
     procedure DeleteConnWindow(afrm : TForm);
 
+    function CreateSqlConn(aowner : TComponent; acfg : TDbConnCfg) : TSQLConnection;
+
   end;
 
 var
@@ -58,6 +60,7 @@ var
 implementation
 
 uses
+  {$ifdef WINDOWS} mysql50conn {$else} mysql80conn {$endif},
   form_conn_edit, form_sql, form_mysql_struct;
 
 {$R *.lfm}
@@ -241,6 +244,36 @@ begin
       Application.Terminate;
     end;
   end;
+end;
+
+function TfrmConnections.CreateSqlConn(aowner : TComponent; acfg : TDbConnCfg) : TSQLConnection;
+begin
+  {$ifdef WINDOWS}
+    // I did not find a proper Mysql8.0 dll
+    result := TMySQL50Connection.Create(aowner);
+    with TMySQL50Connection(result) do
+    begin
+      HostName := acfg.dbhost;
+      DatabaseName := acfg.dbname;
+      UserName := acfg.dbuser;
+      Password := acfg.dbpass;
+    end;
+
+  {$else}
+
+    result := TMySQL80Connection.Create(aowner);
+    with TMySQL80Connection(result) do
+    begin
+      HostName := acfg.dbhost;
+      DatabaseName := acfg.dbname;
+      UserName := acfg.dbuser;
+      Password := acfg.dbpass;
+    end;
+
+  {$endif}
+
+  result.name := 'dbconn';
+
 end;
 
 end.

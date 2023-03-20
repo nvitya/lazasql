@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Grids,
-  StdCtrls, Menus, prg_config, mysql50conn, mysql80conn, mysql57conn, DB, SQLDB,
+  StdCtrls, Menus, prg_config, DB, SQLDB,
   strparseobj;
 
 type
@@ -14,7 +14,6 @@ type
   { TfrmSQL }
 
   TfrmSQL = class(TForm)
-    dbconn : TMySQL50Connection;
     miConnections : TMenuItem;
     nbBottom : TNotebook;
     pageGrid : TPage;
@@ -44,6 +43,8 @@ type
   private
 
   public
+    dbconn : TSQLConnection;
+
     conncfg : TDbConnCfg;
 
     colcount    : integer;
@@ -187,10 +188,9 @@ procedure TfrmSQL.ConnectTo(acfg : TDbConnCfg);
 begin
   conncfg := acfg;
 
-  dbconn.HostName := conncfg.dbhost;
-  dbconn.DatabaseName := conncfg.dbname;
-  dbconn.UserName := conncfg.dbuser;
-  dbconn.Password := conncfg.dbpass;
+  dbconn := frmConnections.CreateSqlConn(self, conncfg);
+  query.DataBase := dbconn;
+  sqltra.DataBase := dbconn;
 
   dbconn.Connected := True;  // may raise and exception
 

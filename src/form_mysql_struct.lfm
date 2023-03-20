@@ -108,14 +108,12 @@ object frmMysqlStruct: TfrmMysqlStruct
   end
   object sqltra: TSQLTransaction
     Active = False
-    Database = dbconn
     Options = [stoUseImplicit]
     Left = 646
     Top = 296
   end
   object query: TSQLQuery
     FieldDefs = <>
-    Database = dbconn
     Transaction = sqltra
     Params = <>
     Macros = <>
@@ -129,14 +127,5 @@ object frmMysqlStruct: TfrmMysqlStruct
       Caption = 'Show Create Table'
       OnClick = miShowCreateTableClick
     end
-  end
-  object dbconn: TMySQL50Connection
-    Connected = False
-    LoginPrompt = False
-    KeepConnection = False
-    Transaction = sqltra
-    SkipLibraryVersionCheck = False
-    Left = 352
-    Top = 272
   end
 end

@@ -8,7 +8,7 @@
         <Filename Value="lazasql.lpr"/>
         <IsPartOfProject Value="True"/>
         <CursorPos X="47" Y="25"/>
-        <UsageCount Value="37"/>
+        <UsageCount Value="38"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -19,7 +19,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="1"/>
         <CursorPos X="46" Y="46"/>
-        <UsageCount Value="37"/>
+        <UsageCount Value="38"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -29,9 +29,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="120"/>
-        <CursorPos X="95" Y="169"/>
-        <UsageCount Value="37"/>
+        <TopLine Value="190"/>
+        <CursorPos X="16" Y="253"/>
+        <UsageCount Value="38"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -43,7 +43,7 @@
         <EditorIndex Value="1"/>
         <WindowIndex Value="1"/>
         <CursorPos X="15" Y="33"/>
-        <UsageCount Value="37"/>
+        <UsageCount Value="38"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -53,10 +53,11 @@
         <ComponentName Value="frmSQL"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="132"/>
-        <CursorPos X="25" Y="140"/>
-        <UsageCount Value="33"/>
+        <TopLine Value="187"/>
+        <CursorPos X="40" Y="218"/>
+        <UsageCount Value="34"/>
         <Bookmarks Count="1">
           <Item0 Y="337" ID="1"/>
         </Bookmarks>
@@ -72,7 +73,7 @@
         <EditorIndex Value="4"/>
         <WindowIndex Value="1"/>
         <CursorPos X="25" Y="49"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="26"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -82,12 +83,11 @@
         <ComponentName Value="frmMysqlStruct"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="1"/>
-        <TopLine Value="109"/>
-        <CursorPos X="23" Y="151"/>
-        <UsageCount Value="25"/>
+        <TopLine Value="114"/>
+        <CursorPos Y="133"/>
+        <UsageCount Value="26"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -95,7 +95,7 @@
         <Filename Value="src/prg_config.pas"/>
         <WindowIndex Value="1"/>
         <CursorPos X="13" Y="15"/>
-        <UsageCount Value="19"/>
+        <UsageCount Value="20"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -172,7 +172,7 @@
         <EditorIndex Value="3"/>
         <WindowIndex Value="1"/>
         <CursorPos X="39" Y="37"/>
-        <UsageCount Value="14"/>
+        <UsageCount Value="15"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -182,70 +182,16 @@
         <CursorPos X="27" Y="70"/>
         <UsageCount Value="11"/>
       </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/3.2.2/packages/fcl-db/src/sqldb/mysql/mysqlconn.inc"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="85"/>
+        <CursorPos X="42" Y="122"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit>
     </Units>
-    <General>
-      <ActiveWindowIndexAtStart Value="1"/>
-    </General>
-    <JumpHistory HistoryIndex="28">
-      <Position>
-        <Filename Value="src/form_mysql_struct.pas"/>
-        <Caret Line="190" Column="6" TopLine="100"/>
-      </Position>
-      <Position>
-        <Filename Value="src/form_view_memo.pas"/>
-        <Caret Line="27" Column="39"/>
-      </Position>
-      <Position>
-        <Filename Value="src/form_sql.pas"/>
-        <Caret Line="256" Column="59" TopLine="241"/>
-      </Position>
-      <Position>
-        <Filename Value="src/form_sql.pas"/>
-      </Position>
-      <Position>
-        <Filename Value="src/form_mysql_struct.pas"/>
-        <Caret Line="117" Column="3" TopLine="100"/>
-      </Position>
-      <Position>
-        <Filename Value="src/form_sql.pas"/>
-        <Caret Line="87" Column="7" TopLine="43"/>
-      </Position>
-      <Position>
-        <Filename Value="src/form_sql.pas"/>
-        <Caret Line="88" Column="7" TopLine="44"/>
-      </Position>
-      <Position>
-        <Filename Value="src/form_sql.pas"/>
-        <Caret Line="87" Column="7" TopLine="43"/>
-      </Position>
-      <Position>
-        <Filename Value="src/form_sql.pas"/>
-        <Caret Line="86" Column="7" TopLine="42"/>
-      </Position>
-      <Position>
-        <Filename Value="src/form_sql.pas"/>
-        <Caret Line="87" Column="7" TopLine="43"/>
-      </Position>
-      <Position>
-        <Filename Value="src/form_sql.pas"/>
-        <Caret Line="86" Column="7" TopLine="42"/>
-      </Position>
-      <Position>
-        <Filename Value="src/form_sql.pas"/>
-        <Caret Line="87" Column="7" TopLine="43"/>
-      </Position>
-      <Position>
-        <Filename Value="src/form_sql.pas"/>
-        <Caret Line="89" Column="7" TopLine="45"/>
-      </Position>
-      <Position>
-        <Filename Value="src/form_connections.pas"/>
-        <Caret Line="229" Column="31" TopLine="145"/>
-      </Position>
-      <Position>
-        <Filename Value="src/form_connections.pas"/>
-        <Caret Line="220" Column="8" TopLine="145"/>
-      </Position>
+    <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="src/form_connections.pas"/>
         <Caret Line="133" Column="24" TopLine="115"/>
@@ -301,6 +247,70 @@
       <Position>
         <Filename Value="src/form_connections.pas"/>
         <Caret Line="165" TopLine="141"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_sql.pas"/>
+        <Caret Line="59" Column="21"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_sql.pas"/>
+        <Caret Line="188" Column="3" TopLine="186"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_sql.pas"/>
+        <Caret Line="46" Column="28" TopLine="5"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_sql.pas"/>
+        <Caret Line="60" Column="18" TopLine="26"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_connections.pas"/>
+        <Caret Line="53" Column="85"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_sql.pas"/>
+        <Caret Line="60" Column="20" TopLine="16"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_sql.pas"/>
+        <Caret Line="193" Column="28" TopLine="175"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_connections.pas"/>
+        <Caret Line="9" Column="56"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_sql.pas"/>
+        <Caret Line="191" Column="48" TopLine="146"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_connections.pas"/>
+        <Caret Line="63" Column="31"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_connections.pas"/>
+        <Caret Line="253" Column="16" TopLine="190"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_sql.pas"/>
+        <Caret Line="9" Column="32"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_mysql_struct.pas"/>
+        <Caret Line="16" Column="15"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_mysql_struct.pas"/>
+        <Caret Line="36" Column="18"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_sql.pas"/>
+        <Caret Line="60" Column="20"/>
+      </Position>
+      <Position>
+        <Filename Value="src/form_mysql_struct.pas"/>
+        <Caret Line="133" TopLine="114"/>
       </Position>
     </JumpHistory>
     <RunParams>
