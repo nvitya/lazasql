@@ -10,13 +10,13 @@ object frmSQL: TfrmSQL
   PopupMenu = sqlMenu
   Position = poOwnerFormCenter
   ShowInTaskBar = stAlways
-  LCLVersion = '2.2.4.0'
+  LCLVersion = '2.2.6.0'
   object nbBottom: TNotebook
     Left = 0
     Height = 322
     Top = 83
     Width = 560
-    PageIndex = 0
+    PageIndex = 1
     Align = alClient
     TabOrder = 0
     object pageGrid: TPage
@@ -46,6 +46,7 @@ object frmSQL: TfrmSQL
         Align = alClient
         Font.Name = 'Courier New'
         ParentFont = False
+        ScrollBars = ssVertical
         TabOrder = 0
       end
     end
