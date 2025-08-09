@@ -28,11 +28,13 @@
         <ComponentName Value="frmConnections"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="190"/>
-        <CursorPos X="16" Y="253"/>
+        <TopLine Value="169"/>
+        <CursorPos Y="249"/>
         <UsageCount Value="38"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="src/form_conn_edit.pas"/>
@@ -53,7 +55,6 @@
         <ComponentName Value="frmSQL"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
         <TopLine Value="187"/>
         <CursorPos X="54" Y="200"/>
@@ -70,6 +71,7 @@
         <ComponentName Value="frmViewMemo"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
         <WindowIndex Value="1"/>
         <CursorPos X="25" Y="49"/>

@@ -21,7 +21,6 @@ type
     btnEdit : TBitBtn;
     btnDelete : TBitBtn;
     btnCancel : TBitBtn;
-    procedure btnCancelClick(Sender : TObject);
     procedure gridDrawCell(Sender : TObject; aCol, aRow : Integer;
       aRect : TRect; aState : TGridDrawState);
     procedure btnNewClick(Sender : TObject);
@@ -60,7 +59,7 @@ var
 implementation
 
 uses
-  {$ifdef WINDOWS} mysql50conn {$else} mysql80conn {$endif},
+  mysql50conn,
   form_conn_edit, form_sql, form_mysql_struct;
 
 {$R *.lfm}
@@ -227,10 +226,6 @@ begin
   sqlfrmlist.Add(afrm);
 end;
 
-procedure TfrmConnections.btnCancelClick(Sender : TObject);
-begin
-end;
-
 procedure TfrmConnections.DeleteConnWindow(afrm : TForm);
 var
   i : integer;
@@ -248,32 +243,17 @@ end;
 
 function TfrmConnections.CreateSqlConn(aowner : TComponent; acfg : TDbConnCfg) : TSQLConnection;
 begin
-  {$ifdef WINDOWS}
-    // I did not find a proper Mysql8.0 dll
-    result := TMySQL50Connection.Create(aowner);
-    with TMySQL50Connection(result) do
-    begin
-      HostName := acfg.dbhost;
-      DatabaseName := acfg.dbname;
-      UserName := acfg.dbuser;
-      Password := acfg.dbpass;
-    end;
-
-  {$else}
-
-    result := TMySQL80Connection.Create(aowner);
-    with TMySQL80Connection(result) do
-    begin
-      HostName := acfg.dbhost;
-      DatabaseName := acfg.dbname;
-      UserName := acfg.dbuser;
-      Password := acfg.dbpass;
-    end;
-
-  {$endif}
+  result := TMySQL50Connection.Create(aowner);
+  with TMySQL50Connection(result) do
+  begin
+    SkipLibraryVersionCheck := True;
+    HostName := acfg.dbhost;
+    DatabaseName := acfg.dbname;
+    UserName := acfg.dbuser;
+    Password := acfg.dbpass;
+  end;
 
   result.name := 'dbconn';
-
 end;
 
 end.

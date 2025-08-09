@@ -6,10 +6,10 @@ object frmConnections: TfrmConnections
   Caption = 'Connections'
   ClientHeight = 350
   ClientWidth = 557
+  Position = poScreenCenter
+  LCLVersion = '4.2.0.0'
   OnClose = FormClose
   OnCreate = FormCreate
-  Position = poScreenCenter
-  LCLVersion = '2.2.4.0'
   object pnlBottom: TPanel
     Left = 0
     Height = 45
@@ -29,8 +29,8 @@ object frmConnections: TfrmConnections
       Default = True
       Kind = bkOK
       ModalResult = 1
-      OnClick = btnConnectClick
       TabOrder = 0
+      OnClick = btnConnectClick
     end
     object btnNew: TBitBtn
       Left = 128
@@ -38,8 +38,8 @@ object frmConnections: TfrmConnections
       Top = 8
       Width = 76
       Caption = 'New'
-      OnClick = btnNewClick
       TabOrder = 1
+      OnClick = btnNewClick
     end
     object btnCopy: TBitBtn
       Left = 208
@@ -47,8 +47,8 @@ object frmConnections: TfrmConnections
       Top = 8
       Width = 75
       Caption = 'Copy'
-      OnClick = btnCopyClick
       TabOrder = 2
+      OnClick = btnCopyClick
     end
     object btnEdit: TBitBtn
       Left = 288
@@ -56,8 +56,8 @@ object frmConnections: TfrmConnections
       Top = 8
       Width = 75
       Caption = 'Edit'
-      OnClick = btnEditClick
       TabOrder = 3
+      OnClick = btnEditClick
     end
     object btnDelete: TBitBtn
       Left = 368
@@ -65,8 +65,8 @@ object frmConnections: TfrmConnections
       Top = 8
       Width = 75
       Caption = 'Delete'
-      OnClick = btnDeleteClick
       TabOrder = 4
+      OnClick = btnDeleteClick
     end
     object btnCancel: TBitBtn
       Left = 464
@@ -77,7 +77,6 @@ object frmConnections: TfrmConnections
       DefaultCaption = True
       Kind = bkClose
       ModalResult = 11
-      OnClick = btnCancelClick
       TabOrder = 5
     end
   end
